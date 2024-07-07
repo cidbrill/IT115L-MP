@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CCIS Student Participation Database</title>
+        <link rel="icon" href="assets/ccis-logo.png" type="image/png">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div class="page" id="signup-page">
+            <div class="page-spacing"></div> 
+            <div class="page-divider">
+                <div id="signup-form">
+                    <p style="color: #FFFFFF; font-size: 50px; font-weight: 600;">WELCOME!</p>
+                    <p style="margin: -10px 0px 0px 0px; padding: 0 0 0 10px; color: #FFFFFF; font-size: 17px;">Create an account</p>
+                    <form>
+                        <div class="input-field">
+                            <input type="text" id="signup-studnum" required>
+                            <label for="signup-username">Student Number</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="password" id="signup-password" required>
+                            <label for="signup-password">Password</label>
+                        </div>
+                        <div class="button-field">
+                            <button type="submit" id="signup-button"><b>SIGN UP</b></button>
+                        </div>
+                        <div class="text-field">
+                            <p style="color: #FFFFFF;">Already have an account? <b id="switchToSignIn">Sign In</b></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="page-divider">
+                <img src="assets/ccis-logo.png" id="ccis-logo"/>
+            </div>
+            <div class="page-spacing"></div>
+        </div>
+        <div class="page" id="signin-page">
+            <div class="page-spacing"></div> 
+            <div class="page-divider">
+                <div id="signin-form">
+                    <p style="color: #FFFFFF; font-size: 50px; font-weight: 600;">WELCOME!</p>
+                    <p style="margin: -10px 0px 0px 0px; padding: 0 0 0 10px; color: #FFFFFF; font-size: 17px;">Enter your account</p>
+                    <form>
+                        <div class="input-field">
+                            <input type="text" id="signin-studnum" required>
+                            <label for="signin-username">Student Number</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="password" id="signin-password" required>
+                            <label for="signin-password">Password</label>
+                        </div>
+                        <div class="button-field">
+                            <button type="submit" id="signin-button"><b>SIGN IN</b></button>
+                        </div>
+                        <div class="text-field">
+                            <p style="color: #FFFFFF;">Need an account? <b id="switchToSignUp">Sign Up</b></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="page-divider">
+                <img src="assets/ccis-logo.png" id="ccis-logo"/>
+            </div>
+            <div class="page-spacing"></div>
+        </div>
+        <div class="page" id="credentials-page">
+            <div class="page-spacing"></div>
+            <div class="page-divider">
+                <div class="house-logo-container">
+                    <img src="assets/chronos.png" class="house-logo"/>
+                    <img src="assets/innovators.png" class="house-logo"/>
+                </div>
+                <div class="house-logo-container">
+                    <img src="assets/cybernetics.png" class="house-logo"/>
+                    <img src="assets/sentinels.png" class="house-logo"/>
+                </div>
+            </div>
+            <div class="page-divider">
+                <div id="credentials-form">
+                    <p style="align-self: center; color: #FFFFFF; font-size: 35px; font-weight: 600;">Personal Information</p>
+                    <form>
+                        <div class="input-field">
+                            <input type="text" id="given-name" required>
+                            <label for="given-name">Given Name</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="text" id="last-name" required>
+                            <label for="last-name">Last Name</label>
+                        </div>
+                        <div class="radiobutton-field">
+                            <p><b>Program</b></p>
+                            <label>
+                                <input type="radio" name="program" value="BSCS" required />
+                                BS Computer Science
+                            </label>
+                            <label>
+                                <input type="radio" name="program" value="BSIT" required />
+                                BS Information Technology
+                            </label>
+                        </div>
+                        <div class="dropdown-field">
+                            <select name="house" required>
+                                <option value="" disabled selected>House</option>
+                                <option value="Chronos">Chronos</option>
+                                <option value="Cybernetics">Cybernetics</option>
+                                <option value="Innovators">Innovators</option>
+                                <option value="Sentinels">Sentinels</option>
+                            </select>
+                        </div>
+                        <div class="button-field">
+                            <button type="submit" id="subcred-button"><b>SUBMIT</b></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="page-spacing"></div>
+        </div>
+        <div class="page" id="home-page">
+            <div class="control-panel" id="admin-panel">
+                <p style="align-self: center; color: #FFFFFF; font-size: 35px; font-weight: 600;">Admin Panel</p>
+                <div class="button-field">
+                    <button type="submit" id="search-button" onclick="switchToSearchRecord()"><b>SEARCH RECORD</b></button>
+                </div>
+                <div class="button-field">
+                    <button type="submit" id="update-button" onclick="switchToIUpdateRecord()"><b>UPDATE RECORD</b></button>
+                </div>
+                <div class="button-field">
+                    <button type="submit" id="signout-button"><b>SIGN OUT</b></button>
+                </div>
+            </div>
+            <div class="control-panel" id="student-panel">
+                <p style="align-self: center; color: #FFFFFF; font-size: 35px; font-weight: 600;">Student Panel</p>
+                <div class="button-field">
+                    <button type="submit" id="insert-button" onclick="switchToAddRecord()"><b>ADD RECORD</b></button>
+                </div>
+                <div class="button-field">
+                    <button type="submit" id="signout-button"><b>SIGN OUT</b></button>
+                </div>
+            </div>
+            <div id="search-record">
+                <p style="margin: 10px 0 15px 0; align-self: center; color: #FFFFFF; font-size: 35px; font-weight: 600;">Search Record</p>
+                <p style="margin: -10px 0px -5px 0px; align-self: center; color: #FFFFFF; font-size: 17px;">Find a specific record</p>
+                <form>
+                    <div class="input-field">
+                        <input type="text" id="search-studnum" required>
+                        <label for="search-studnum">Student Number</label>
+                    </div>
+                    <div class="dropdown-field">
+                        <select id="searchEventName" name="events" required>
+                            <option value="" disabled selected>Event</option>
+                        </select>
+                    </div>
+                    <div class="input-field">
+                        <input type="date" id="searchDateAttended" required>
+                    </div>
+                    <div class="radiobutton-field">
+                        <label>
+                            <input type="radio" name="searchParticipation" value="Player" required />
+                            Player
+                        </label>
+                        <label>
+                            <input type="radio" name="searchParticipation" value="Audience" required />
+                            Audience
+                        </label>
+                    </div>
+                    <div class="button-field">
+                        <button type="submit" id="searchrec-button"><b>SEARCH</b></button>
+                    </div>
+                </form>
+            </div>
+            <div id="initial-update-record">
+                <p style="margin: 10px 0 15px 0; align-self: center; color: #FFFFFF; font-size: 35px; font-weight: 600;">Update Record</p>
+                <p style="margin: -10px 0px -5px 0px; align-self: center; color: #FFFFFF; font-size: 17px;">Find record to be updated</p>
+                <form>
+                    <div class="input-field">
+                        <input type="text" id="update-studnum" required>
+                        <label for="update-studnum">Student Number</label>
+                    </div>
+                    <div class="dropdown-field">
+                        <select id="updateEventName" name="events" required>
+                            <option value="" disabled selected>Event</option>
+                        </select>
+                    </div>
+                    <div class="input-field">
+                        <input type="date" id="iUpdateDateAttended" required>
+                    </div>
+                    <div class="radiobutton-field">
+                        <label>
+                            <input type="radio" name="iUpdateParticipation" value="Player" required />
+                            Player
+                        </label>
+                        <label>
+                            <input type="radio" name="iUpdateParticipation" value="Audience" required />
+                            Audience
+                        </label>
+                    </div>
+                    <div class="button-field">
+                        <button type="submit" id="searchRecToUp-button"><b>NEXT</b></button>
+                    </div>
+                </form>
+            </div>
+            <div id="final-update-record">
+                <p style="margin: 10px 0 15px 0; align-self: center; color: #FFFFFF; font-size: 35px; font-weight: 600;">Update Record</p>
+                <p style="margin: -10px 0px -5px 0px; align-self: center; color: #FFFFFF; font-size: 17px;">Enter updated information</p>
+                <form>
+                    <div class="input-field">
+                        <input type="date" id="fUpdateDateAttended" required>
+                    </div>
+                    <div class="radiobutton-field">
+                        <label>
+                            <input type="radio" name="fUpdateParticipation" value="Player" required />
+                            Player
+                        </label>
+                        <label>
+                            <input type="radio" name="fUpdateParticipation" value="Audience" required />
+                            Audience
+                        </label>
+                    </div>
+                    <div class="button-field">
+                        <button type="submit" id="updaterec-button"><b>SUBMIT</b></button>
+                    </div>
+                </form>
+            </div>
+            <div id="insert-record">
+                <p style="margin: 10px 0 15px 0; align-self: center; color: #FFFFFF; font-size: 35px; font-weight: 600;">Add Record</p>
+                <p style="margin: -10px 0px 20px 0px; align-self: center; color: #FFFFFF; font-size: 17px;">Insert a new record</p>
+                <form>
+                    <div class="dropdown-field">
+                        <select id="insertEventName" name="events" required>
+                            <option value="" disabled selected>Event</option>
+                        </select>
+                    </div>
+                    <div class="input-field">
+                        <input type="date" id="insertDateAttended" required>
+                    </div>
+                    <div class="radiobutton-field">
+                        <label>
+                            <input type="radio" name="insertParticipation" value="Player" required />
+                            Player
+                        </label>
+                        <label>
+                            <input type="radio" name="insertParticipation" value="Audience" required />
+                            Audience
+                        </label>
+                    </div>
+                    <div class="button-field">
+                        <button type="submit" id="insrec-button"><b>SUBMIT</b></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>

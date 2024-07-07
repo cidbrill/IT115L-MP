@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #8390C4;
+    font-family: "Poppins", sans-serif;
+    overflow: hidden;
+}
+
+.page {
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-divider {
+    width: 40vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-spacing {
+    width: 10vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#ccis-logo {
+    width: 50vh;
+    height: auto;
+}
+
+.house-logo-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.house-logo {
+    width: 30vh;
+    height: auto;
+}
+
+#signup-form,
+#signin-form {
+    width: 500px;
+    height: 570px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 45px;
+    background-color: #172852;
+    border-radius: 40px;
+}
+
+#credentials-form {
+    width: 500px;
+    height: 650px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 45px;
+    background-color: #172852;
+    border-radius: 40px;
+}
+
+.input-field,
+.button-field,
+.text-field {
+    position: relative;
+    margin: 30px 0 30px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.radiobutton-field {
+    box-sizing: border-box;
+    padding: 20px;
+    margin: 30px 0 30px 0;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+}
+
+.dropdown-field select {
+    width: 410px;
+    height: 50px;
+    padding-left: 15px;
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.input-field label {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #161B2B;
+    pointer-events: none;
+    opacity: 1;
+}
+
+.input-field input {
+    width: 375px;
+    height: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    color: #161B2B;
+    padding: 0 15px;
+    background-color: #efefef;
+    border: 3px solid transparent;
+    outline: #efefef;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.input-field input:valid {
+    border-color: #000000;
+}
+
+.input-field input:valid~label {
+    opacity: 0;
+}
+
+.button-field button {
+    width: 410px;
+    height: 55px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    color: #FFFFFF;
+    background-color: #EA242A;
+    border: none;
+    border-radius: 25px;
+    transition: transform 0.5s ease;
+}
+
+.control-panel {
+    display: none;
+}
+
+.control-panel {
+    width: 500px;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 45px;
+    background-color: #172852;
+    border-radius: 40px;
+}
+
+#admin-panel div,
+#student-panel div {
+    margin: 15px;
+}
+
+#insert-record,
+#search-record,
+#initial-update-record,
+#final-update-record {
+    width: 500px;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 45px;
+    background-color: #172852;
+    border-radius: 40px;
+}
