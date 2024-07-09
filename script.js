@@ -10,6 +10,7 @@ function switchToPanelsPage(username) {
         document.getElementById('admin-panel').style.display = 'flex';
     }
     else {
+        document.getElementById('signin-page').style.display = 'none';
         document.getElementById('credentials-page').style.display = 'none';
         document.getElementById('home-page').style.display = 'flex';
         document.getElementById('student-panel').style.display = 'flex';
