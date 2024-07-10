@@ -14,7 +14,7 @@
                 <div id="signup-form">
                     <p style="color: #FFFFFF; font-size: 50px; font-weight: 600;">WELCOME!</p>
                     <p style="margin: -10px 0px 0px 0px; padding: 0 0 0 10px; color: #FFFFFF; font-size: 17px;">Create an account</p>
-                    <form>
+                    <form onsubmit="signUp(event)">
                         <div class="input-field">
                             <input type="text" id="signup-studnum" required>
                             <label for="signup-username">Student Number</label>
@@ -43,7 +43,7 @@
                 <div id="signin-form">
                     <p style="color: #FFFFFF; font-size: 50px; font-weight: 600;">WELCOME!</p>
                     <p style="margin: -10px 0px 0px 0px; padding: 0 0 0 10px; color: #FFFFFF; font-size: 17px;">Enter your account</p>
-                    <form>
+                    <form onsubmit="signIn(event)">
                         <div class="input-field">
                             <input type="text" id="signin-studnum" required>
                             <label for="signin-username">Student Number</label>
@@ -81,7 +81,7 @@
             <div class="page-divider">
                 <div id="credentials-form">
                     <p style="align-self: center; color: #FFFFFF; font-size: 35px; font-weight: 600;">Personal Information</p>
-                    <form>
+                    <form onsubmit="submitCredentials(event)">
                         <div class="input-field">
                             <input type="text" id="given-name" required>
                             <label for="given-name">Given Name</label>
@@ -128,7 +128,7 @@
                     <button type="submit" id="update-button" onclick="switchToIUpdateRecord()"><b>UPDATE RECORD</b></button>
                 </div>
                 <div class="button-field">
-                    <button type="submit" id="signout-button"><b>SIGN OUT</b></button>
+                    <button type="submit" id="signout-button" onclick="signOut()"><b>SIGN OUT</b></button>
                 </div>
             </div>
             <div class="control-panel" id="student-panel">
@@ -137,13 +137,13 @@
                     <button type="submit" id="insert-button" onclick="switchToAddRecord()"><b>ADD RECORD</b></button>
                 </div>
                 <div class="button-field">
-                    <button type="submit" id="signout-button"><b>SIGN OUT</b></button>
+                    <button type="submit" id="signout-button" onclick="signOut()"><b>SIGN OUT</b></button>
                 </div>
             </div>
             <div id="search-record">
                 <p style="margin: 10px 0 15px 0; align-self: center; color: #FFFFFF; font-size: 35px; font-weight: 600;">Search Record</p>
                 <p style="margin: -10px 0px -5px 0px; align-self: center; color: #FFFFFF; font-size: 17px;">Find a specific record</p>
-                <form>
+                <form onsubmit="searchRecord(event)">
                     <div class="input-field">
                         <input type="text" id="search-studnum" required>
                         <label for="search-studnum">Student Number</label>
@@ -174,7 +174,7 @@
             <div id="initial-update-record">
                 <p style="margin: 10px 0 15px 0; align-self: center; color: #FFFFFF; font-size: 35px; font-weight: 600;">Update Record</p>
                 <p style="margin: -10px 0px -5px 0px; align-self: center; color: #FFFFFF; font-size: 17px;">Find record to be updated</p>
-                <form>
+                <form onsubmit="searchRecordToUpdate(event)">
                     <div class="input-field">
                         <input type="text" id="update-studnum" required>
                         <label for="update-studnum">Student Number</label>
@@ -205,7 +205,7 @@
             <div id="final-update-record">
                 <p style="margin: 10px 0 15px 0; align-self: center; color: #FFFFFF; font-size: 35px; font-weight: 600;">Update Record</p>
                 <p style="margin: -10px 0px -5px 0px; align-self: center; color: #FFFFFF; font-size: 17px;">Enter updated information</p>
-                <form>
+                <form onsubmit="updateRecord(event)">
                     <div class="input-field">
                         <input type="date" id="fUpdateDateAttended" required>
                     </div>
@@ -227,7 +227,7 @@
             <div id="insert-record">
                 <p style="margin: 10px 0 15px 0; align-self: center; color: #FFFFFF; font-size: 35px; font-weight: 600;">Add Record</p>
                 <p style="margin: -10px 0px 20px 0px; align-self: center; color: #FFFFFF; font-size: 17px;">Insert a new record</p>
-                <form>
+                <form onsubmit="insertRecord(event)">
                     <div class="dropdown-field">
                         <select id="insertEventName" name="events" required>
                             <option value="" disabled selected>Event</option>
