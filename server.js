@@ -59,9 +59,9 @@ app.post('/auth/signup', async (req, res) => {
         } else {
             await connection.execute(
                 `INSERT INTO UserData (Username, Password) VALUES (:username, :password)`,
-                [username, password]
+                [username, password],
+                { autoCommit: true }
             );
-            await connection.commit();
             res.status(200).send('Signup successful!');
         }
     } catch (err) {
@@ -146,6 +146,58 @@ app.post('/insert/credentials', async (req, res) => {
     }
 });
 
+app.post('/select/student', async (req, res) => {
+    const { username } = req.body;
+    let connection;
+    try {
+        connection = await oracledb.getConnection({
+            user: 'C##CCIS_ADMIN',
+            password: 'admin',
+            connectString: 'localhost/XE'
+        });
+
+        const result = await connection.execute(
+            `SELECT StudNum, StudFName || ' ' || StudLName, Program, HouseName FROM SYSTEM.StudInfo WHERE StudNum = :username`,
+            [username]
+        );        
+
+        if (result.rows.length > 0) {
+            const studentInfo = result.rows;
+
+            const participationResult = await connection.execute(
+                `SELECT Participation, COUNT(*) AS Count FROM SYSTEM.EventAttended WHERE StudNum = :username GROUP BY Participation`,
+                [username]
+            );
+
+            const participationCounts = participationResult.rows.reduce((acc, row) => {
+                acc[row[0]] = row[1];
+                return acc;
+            }, {});
+
+            res.status(200).json({
+                message: 'Records found',
+                studentInfo,
+                participationCounts
+            });
+        } else {
+            res.status(404).json({
+                message: 'No records found',
+            });
+        }
+    } catch (err) {
+        res.status(500).send('An error occurred. Please try again later.');
+        console.error(err);
+    } finally {
+        if (connection) {
+            try {
+                await connection.close();
+            } catch (err) {
+                console.error(err);
+            }
+        }
+    }
+});
+
 app.post('/select/record', async (req, res) => {
     const { username, eventCode, dateAttended, participation } = req.body;
     let connection;
@@ -164,7 +216,7 @@ app.post('/select/record', async (req, res) => {
         if (result.rows.length > 0) {
             res.status(200).send('Records found');
         } else {
-            res.status(404).send('No records found.');
+            res.status(404).send('No records found');
         }
     } catch (err) {
         res.status(500).send('An error occurred. Please try again later.');

@@ -3,8 +3,8 @@ function switchToCredentialsPage() {
     document.getElementById('credentials-page').style.display = 'flex';
 };
 
-function switchToPanelsPage(username) {
-    if (username.substring(0, 5).toLowerCase() === 'admin') {
+function switchToPanelsPage() {
+    if (localStorage.getItem('currentUser').substring(0, 5).toLowerCase() === 'admin') {
         document.getElementById('signin-page').style.display = 'none';
         document.getElementById('home-page').style.display = 'flex';
         document.getElementById('admin-panel').style.display = 'flex';
@@ -15,6 +15,16 @@ function switchToPanelsPage(username) {
         document.getElementById('home-page').style.display = 'flex';
         document.getElementById('student-panel').style.display = 'flex';
     }
+}
+
+function switchToSearchStudent() {
+    document.getElementById('admin-panel').style.display = 'none';
+    document.getElementById('search-student').style.display = 'flex';
+}
+
+function switchToDisplayStudent() {
+    document.getElementById('search-student').style.display = 'none';
+    document.getElementById('display-student').style.display = 'flex';
 }
 
 function switchToSearchRecord() {
@@ -32,8 +42,10 @@ function switchToFUpdateRecord() {
     document.getElementById('final-update-record').style.display = 'flex';
 }
 
-function returnToPanelsPage(username) {
-    if (username.substring(0, 5).toLowerCase() === 'admin') {
+function returnToPanelsPage() {
+    if (localStorage.getItem('currentUser').substring(0, 5).toLowerCase() === 'admin') {
+        document.getElementById('search-student').style.display = 'none';
+        document.getElementById('display-student').style.display = 'none';
         document.getElementById('search-record').style.display = 'none';
         document.getElementById('final-update-record').style.display = 'none';
         document.getElementById('admin-panel').style.display = 'flex';
@@ -93,6 +105,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         });
     } catch (error) {
         console.error('Error fetching events:', error);
+        console.error(error);
     }
 });
 
@@ -125,6 +138,7 @@ async function signUp(event) {
         }
     } catch (error) {
         alert('An error occurred. Please try again later.');
+        console.error(error);
     }
 }
 
@@ -148,10 +162,11 @@ async function signIn(event) {
 
         if (response.ok) {
             localStorage.setItem('currentUser', username);
-            switchToPanelsPage(username);
+            switchToPanelsPage();
         }
     } catch (error) {
         alert('An error occurred. Please try again later.');
+        console.error(error);
     }
 }
 
@@ -182,10 +197,55 @@ async function submitCredentials(event) {
         alert(result);
 
         if (response.ok) {
-            switchToPanelsPage(username);
+            switchToPanelsPage();
         }
     } catch (error) {
         alert('An error occurred. Please try again later.');
+        console.error(error);
+    }
+}
+
+async function searchStudent(event) {
+    event.preventDefault();
+
+    const username = document.getElementById('search-studinfo').value;
+    const studentNumber = document.getElementById('studnum');
+    const studentName = document.getElementById('student-name');
+    const studentProgram = document.getElementById('student-program');
+    const studentHouse = document.getElementById('student-house');
+    const eventsWatched = document.getElementById('events-watched');
+    const eventsPlayed = document.getElementById('events-played');
+
+    try {
+        const response = await fetch('http://localhost:3000/select/student', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username })
+        });
+
+        const result = await response.json();
+        alert(result.message);
+
+        if (response.ok) {
+            studentNumber.textContent = result.studentInfo[0][0];
+            studentName.value = result.studentInfo[0][1];
+
+            if (result.studentInfo[0][2] === 'BSCS') {
+                studentProgram.value = 'BS Computer Science';
+            } else {
+                studentProgram.value = 'BS Information Technology';
+            }
+            
+            studentHouse.value = result.studentInfo[0][3];
+            eventsWatched.value = result.participationCounts.Audience;
+            eventsPlayed.value = result.participationCounts.Player;
+            switchToDisplayStudent()
+        }
+    } catch (error) {
+        alert('An error occurred. Please try again later.');
+        console.error(error);
     }
 }
 
@@ -210,10 +270,11 @@ async function searchRecord(event) {
         alert(result);
 
         if (response.ok) {
-            returnToPanelsPage(document.getElementById('signin-studnum').value);
+            returnToPanelsPage();
         }
     } catch (error) {
         alert('An error occurred. Please try again later.');
+        console.error(error);
     }
 }
 
@@ -242,6 +303,7 @@ async function searchRecordToUpdate(event) {
         }
     } catch (error) {
         alert('An error occurred. Please try again later.');
+        console.error(error);
     }
 }
 
@@ -266,10 +328,11 @@ async function updateRecord(event) {
         alert(result);
 
         if (response.ok) {
-            returnToPanelsPage(document.getElementById('signin-studnum').value)
+            returnToPanelsPage()
         }
     } catch (error) {
         alert('An error occurred. Please try again later.');
+        console.error(error);
     }
 }
 
@@ -294,9 +357,10 @@ async function insertRecord(event) {
         alert(result);
 
         if (response.ok) {
-            returnToPanelsPage(document.getElementById('signin-studnum').value)
+            returnToPanelsPage()
         }
     } catch (error) {
         alert('An error occurred. Please try again later.');
+        console.error(error);
     }
 }

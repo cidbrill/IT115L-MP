@@ -172,10 +172,12 @@ body {
     margin: 15px;
 }
 
-#insert-record,
+#search-student,
+#display-student,
 #search-record,
 #initial-update-record,
-#final-update-record {
+#final-update-record,
+#insert-record {
     width: 500px;
     display: none;
     flex-direction: column;

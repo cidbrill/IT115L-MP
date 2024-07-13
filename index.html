@@ -122,7 +122,10 @@
             <div class="control-panel" id="admin-panel">
                 <p style="align-self: center; color: #FFFFFF; font-size: 35px; font-weight: 600;">Admin Panel</p>
                 <div class="button-field">
-                    <button type="submit" id="search-button" onclick="switchToSearchRecord()"><b>SEARCH RECORD</b></button>
+                    <button type="submit" id="searchstud-button" onclick="switchToSearchStudent()"><b>SEARCH STUDENT</b></button>
+                </div>
+                <div class="button-field">
+                    <button type="submit" id="searchrec-button" onclick="switchToSearchRecord()"><b>SEARCH RECORD</b></button>
                 </div>
                 <div class="button-field">
                     <button type="submit" id="update-button" onclick="switchToIUpdateRecord()"><b>UPDATE RECORD</b></button>
@@ -139,6 +142,75 @@
                 <div class="button-field">
                     <button type="submit" id="signout-button" onclick="signOut()"><b>SIGN OUT</b></button>
                 </div>
+            </div>
+            <div id="search-student">
+                <p style="margin: 10px 0 15px 0; align-self: center; color: #FFFFFF; font-size: 35px; font-weight: 600;">Search Student</p>
+                <p style="margin: -10px 0px -5px 0px; align-self: center; color: #FFFFFF; font-size: 17px;">Find a specific student</p>
+                <form onsubmit="searchStudent(event)">
+                    <div class="input-field">
+                        <input type="text" id="search-studinfo" required>
+                        <label for="search-student">Student Number</label>
+                    </div>
+                    <div class="button-field">
+                        <button type="submit" id="searchstudinfo-button"><b>SEARCH</b></button>
+                    </div>
+                </form>
+            </div>
+            <div id="display-student">
+                <p id="studnum" style="margin: 10px 0 10px 0; align-self: center; color: #FFFFFF; font-size: 35px; font-weight: 600;"></p>
+                <form onsubmit="returnToPanelsPage()">
+                    <p style="margin: 0 0 -20px 0; align-self: center; color: #FFFFFF; font-size: 17px;">Student Name</p>
+                    <div class="input-field">
+                        <input type="text" id="student-name" style="text-align: center; font-size: 20px; font-weight: 600;" readonly>
+                    </div>
+                    <p style="margin: -20px 0 -20px 0; align-self: center; color: #FFFFFF; font-size: 17px;">Program</p>
+                    <div class="input-field">
+                        <input type="text" id="student-program" style="text-align: center; font-size: 20px; font-weight: 600;" readonly>
+                    </div>
+                    <p style="margin: -20px 0 -20px 0; align-self: center; color: #FFFFFF; font-size: 17px;">House Name</p>
+                    <div class="input-field">
+                        <input type="text" id="student-house" style="text-align: center; font-size: 20px; font-weight: 600;" readonly>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <div style="display: flex; flex-direction: column;">
+                            <p style="margin: -20px 0 10px 0; color: #FFFFFF; font-size: 17px;">Events Watched</p>
+                            <input type="text"
+                                   id="events-watched"
+                                   style="width: 185px;
+                                          height: 50px;
+                                          font-family: 'Poppins', sans-serif;
+                                          text-align: center;
+                                          font-size: 20px;
+                                          font-weight: 600;
+                                          color: #161B2B;
+                                          background-color: #efefef;
+                                          border: 3px solid transparent;
+                                          outline: #efefef;
+                                          border-radius: 5px;"
+                                    readonly>
+                        </div>
+                        <div style="display: flex; flex-direction: column;">
+                            <p style="margin: -20px 0 10px 0; color: #FFFFFF; font-size: 17px;">Events Played</p>
+                            <input type="text"
+                                   id="events-played"
+                                   style="width: 185px;
+                                          height: 50px;
+                                          font-family: 'Poppins', sans-serif;
+                                          text-align: center;
+                                          font-size: 20px;
+                                          font-weight: 600;
+                                          color: #161B2B;
+                                          background-color: #efefef;
+                                          border: 3px solid transparent;
+                                          outline: #efefef;
+                                          border-radius: 5px;"
+                                    readonly>
+                        </div>
+                    </div>
+                    <div class="button-field">
+                        <button type="submit"><b>DONE</b></button>
+                    </div>
+                </form>
             </div>
             <div id="search-record">
                 <p style="margin: 10px 0 15px 0; align-self: center; color: #FFFFFF; font-size: 35px; font-weight: 600;">Search Record</p>
